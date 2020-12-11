@@ -1,0 +1,36 @@
+<html><head><link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
+    <script src='lib/angular.min.js'></script> 
+    <script src="js/to-do.js"></script>
+    
+    <body ng-app='appx' ng-controller="app">
+    <h1 class="heading" >To - Do list</h1>
+    <span class="sp">   <input type="text" name="name" ng-model="task"  ng-keyup="searchEnter($event)" class="question" id="nme" required autocomplete="off" />
+  <label for="nme"><span>Add Task Info </span></label></span> 
+        
+       
+       <br><br>
+       <br><br>
+       <br><br>
+       <br><div class="container">
+        <center><table><thead>
+           <tr>
+               <th>check box</th>
+               <th>task info</th>
+               <th>delete task</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat="t in tasks track by $index">
+               <td><input type="checkbox" ng-model="t.status" ng-change=update()></td>
+                <td><span class="done-{{t.status}}" contenteditable="false" ng-model="t.taskInfo" ng-keydown="enterAgain(t.taskInfo)" ng-dblclick="contentEdit(t.taskInfo)">
+                    {{t.taskInfo}}
+                </span></td>
+                <td><button class="btn" ng-click="delTask(t.taskInfo)"><i class="fa fa-trash"></i></button></td>
+           </tr>
+        </tbody>
+       </table></center>
+    </div>
+       
+    </body>
+</html>
